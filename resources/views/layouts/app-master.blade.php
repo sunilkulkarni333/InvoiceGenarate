@@ -30,7 +30,7 @@
       .contentPadding{
         padding-top: 28px;
       }
-    </style>
+    </style> 
 
     
     <!-- Custom styles for this template -->
