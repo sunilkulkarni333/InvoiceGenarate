@@ -32,35 +32,33 @@
     </div>
   </header> --}}
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img src="images/logo.png"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="images/logo.png"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            @auth
-              <li class="nav-item active">
-                  <a class="nav-link" href="#">Clients</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Fulfillment Fees</a>
-              </li>
-                           
-              {{auth()->user()->name}}
-              <li class="nav-item text-end">
-                <a href="{{ route('logout.perform') }}" class="nav-link btn btn-outline-light me-2">Logout</a>
-              </li>
-            @endauth
-              @guest
-              <li class="nav-item text-end">
-                <a href="{{ route('login.perform') }}" class=" nav-link btn btn-outline-light me-2">Login</a>
-                {{-- <a href="{{ route('register.perform') }}" class="btn btn-warning">Sign-up</a> --}}
-              </li>
-            @endguest
-          </ul>      
-      </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link" href="#">Clients</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Fulfillment Fees</a>
+            </li>
+           
+           
+        </ul>
+        <ul class="navbar-nav my-2 my-lg-0">
+            <li class="nav-item ">
+              {{-- <a href="{{ route('login.perform') }}" class=" nav-link btn btn-outline-light me-2">Login</a> --}}
+            </li>
+            <li class="nav-item active">
+              <a href="{{ route('logout.perform') }}" class="nav-link btn btn-outline-light me-2">Logout</a>
+            </li>
+        </ul>    
     </div>
+  </div>
 </nav>
+  

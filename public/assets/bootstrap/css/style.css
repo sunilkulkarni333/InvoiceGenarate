@@ -1,6 +1,6 @@
 
 
-body.html,h1,h2,h3,h4,h5,p,li,span{
+body.html,h1,h2,h3,h4,h5,h6,p,li,span{
 	font-family: 'Roboto', sans-serif;
 }
 
@@ -125,6 +125,65 @@ letter-spacing: 0.18px;
 .table-button-div{
 	display: flex;
 	justify-content: space-between;
+}
+.grid-title-h2{
+	    color: #000000;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.26px;
+}
+.grid{
+	border-radius: 8px;
+background: #FFF;
+padding: 20px;
+box-shadow: 5px 5px 25px 0px rgba(0, 0, 0, 0.06);
+margin-bottom: 20px;
+}
+.grid .title-blue{
+	color: #224F7A;
+	font-size: 18px;
+	font-weight: 700;
+	margin-bottom: 15px;
+}
+.grid h4{
+	color: #000000;
+	font-size: 18px;
+}
+.grid h6{
+	font-weight: 300;
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+.m-20{
+	margin: 20px 0;
+}
+.grid p{
+	color: #B1B1B1;
+	font-size: 14px;
+	margin-bottom: 0;
+}
+.grid-flex{
+	display: flex;
+	justify-content: space-between;
+	padding: 0 30px;
+	margin-bottom: 10px;
+}
+.grid-flex input{
+	height: 35px;
+    border: 1px solid #DDE1E5;
+    padding: 10px;
+    width: 100px;
+    border-radius: 5px;
+}
+.w-700{
+	font-weight: 500!important;
+}
+.second-p{
+	color: #777777!important;
+}
+.table-button-div-ceter{
+	text-align: center;
+	margin-top: 30px;
 }
 @media(min-width:767px){
 	.container-fluid{
