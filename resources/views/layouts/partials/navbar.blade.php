@@ -41,14 +41,14 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
+            @auth
               <li class="nav-item active">
                   <a class="nav-link" href="#">Clients</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="#">Fulfillment Fees</a>
               </li>
-             
-              @auth
+                           
               {{auth()->user()->name}}
               <li class="nav-item text-end">
                 <a href="{{ route('logout.perform') }}" class="nav-link btn btn-outline-light me-2">Logout</a>

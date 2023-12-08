@@ -22,7 +22,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     /**
      * Home Routes
      */
-    Route::get('/', [HomeController::class, 'index'])->name('home.index');
+    Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 
     Route::group(['middleware' => ['guest']], function() {
         /**
@@ -34,8 +34,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         /**
          * Login Routes
          */
-        Route::get('/login', [LoginController::class, 'show'])->name('login.show');
-        Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
+        Route::get('/', [LoginController::class, 'show'])->name('login.show');
+        Route::post('/', [LoginController::class, 'login'])->name('login.perform');
 
     });
 
