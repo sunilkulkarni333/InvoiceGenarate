@@ -17,26 +17,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <td>Walmart</td>
-                            <td>FHU924</td>
-                            <td>Miami, FL, USA</td>
-                            <td><a href="">Generate Invoice</a></td>
-                            </tr>
-                            <tr>
-                            <td>Walmart</td>
-                            <td>FHU924</td>
-                            <td>Miami, FL, USA</td>
-                            <td><a href="">Generate Invoice</a></td>
-                            </tr>
-                            <tr>
-                            <td>Walmart</td>
-                            <td>FHU924</td>
-                            <td>Miami, FL, USA</td>
-                            <td><a href="">Generate Invoice</a></td>
-                            </tr>
+                            @foreach ($clients as $client)
+                                <tr>
+                                    <a href="{{ route('home.clientInvoices')}}">
+                                        <td>{{$client->name}}</td>
+                                        <td>{{$client->client_id}}</td>
+                                        <td>{{$client->location}}</td>
+                                        <td><a href="">Generate Invoice</a></td>
+                                    </a>   
+                                </tr>                                 
+                            @endforeach                   
                         </tbody>
                     </table>
+                    {{ $clients->links() }}
                 </div>
             </div>
         </div>

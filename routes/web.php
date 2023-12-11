@@ -39,6 +39,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          * Home Routes client list,general fees
          */
         Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+        Route::get('/clientInvoices', [HomeController::class, 'clientInvoices'])->name('home.clientInvoices');
         Route::get('/generalFees', [HomeController::class, 'generalFees'])->name('home.generalFees');
         Route::post('/generalFeesPost', [HomeController::class, 'generalFeesPost'])->name('home.generalFeesPost');
 

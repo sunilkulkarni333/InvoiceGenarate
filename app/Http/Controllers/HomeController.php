@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\general_fees;
+use App\Models\user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,7 +11,12 @@ class HomeController extends Controller
 {
     public function index() 
     {       
-        return view('home.index');
+        $clients = user::where('role',1)->paginate(2);        
+        return view('home.index',compact('clients'));
+    }
+
+    public function clientInvoices(){
+        return view('home.clientInvoices');
     }
 
     public function generalFees(){
