@@ -19,12 +19,10 @@
                         <tbody>
                             @foreach ($clients as $client)
                                 <tr>
-                                    <a href="{{ route('home.clientInvoices')}}">
-                                        <td>{{$client->name}}</td>
-                                        <td>{{$client->client_id}}</td>
-                                        <td>{{$client->location}}</td>
-                                        <td><a href="">Generate Invoice</a></td>
-                                    </a>   
+                                    <td><a href="{{ route('home.clientInvoices')}}">{{$client->name}}</a></td>
+                                    <td>{{$client->client_id}}</td>
+                                    <td>{{$client->location}}</td>
+                                    <td><a href="">Generate Invoice</a></td>                                    
                                 </tr>                                 
                             @endforeach                   
                         </tbody>

@@ -7,7 +7,7 @@
           <div class="row">
             <div class="col">
               <div class="table-title-div">
-                 <h2 class="table-title-h2"><a href=""><img src="images/arrow.png" class="img-fluid" width="22" /> Walmart Invoice</a></h2>
+                 <h2 class="table-title-h2"><a href="{{route('home.index')}}"><img src="images/arrow.png" class="img-fluid" width="22" /></a> Walmart Invoice</h2>
                  <a href="" class="btn cus-btn-or">Generate Invoice</a>
               </div>
 

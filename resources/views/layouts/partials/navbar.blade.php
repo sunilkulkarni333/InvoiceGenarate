@@ -42,7 +42,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             @auth               
-              <li class="nav-item @if(\Request::route()->getName() == 'home.index') active  @endif  ">
+              <li class="nav-item @if(\Request::route()->getName() == 'home.index' || \Request::route()->getName() == 'home.clientInvoices') active  @endif  ">
                   <a class="nav-link" href="{{ route('home.index')}}">Clients</a>
               </li>
               <li class="nav-item  @if(\Request::route()->getName() == 'home.generalFees') active @endif ">
