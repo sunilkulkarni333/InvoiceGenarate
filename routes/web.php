@@ -19,11 +19,6 @@ use App\Http\Controllers\RegisterController;
 
 Route::group(['namespace' => 'App\Http\Controllers'], function()
 {   
-    /**
-     * Home Routes
-     */
-    Route::get('/home', [HomeController::class, 'index'])->name('home.index');
-
     Route::group(['middleware' => ['guest']], function() {
         /**
          * Register Routes
@@ -40,6 +35,13 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     });
 
     Route::group(['middleware' => ['auth']], function() {
+        /**
+         * Home Routes client list,general fees
+         */
+        Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+        Route::get('/generalFees', [HomeController::class, 'generalFees'])->name('home.generalFees');
+        Route::post('/generalFeesPost', [HomeController::class, 'generalFeesPost'])->name('home.generalFeesPost');
+
         /**
          * Logout Routes
          */
