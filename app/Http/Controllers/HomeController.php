@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index() 
     {       
-        $clients = user::where('role',1)->paginate(2);        
+        $clients = user::where('role',1)->paginate(20);        
         return view('home.index',compact('clients'));
     }
 
