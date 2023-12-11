@@ -19,11 +19,6 @@ use App\Http\Controllers\RegisterController;
 
 Route::group(['namespace' => 'App\Http\Controllers'], function()
 {   
-    /**
-     * Home Routes
-     */
-    Route::get('/', [HomeController::class, 'index'])->name('home.index');
-
     Route::group(['middleware' => ['guest']], function() {
         /**
          * Register Routes
@@ -34,12 +29,19 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         /**
          * Login Routes
          */
-        Route::get('/login', [LoginController::class, 'show'])->name('login.show');
-        Route::post('/login', [LoginController::class, 'login'])->name('login.perform');
+        Route::get('/', [LoginController::class, 'show'])->name('login.show');
+        Route::post('/', [LoginController::class, 'login'])->name('login.perform');
 
     });
 
     Route::group(['middleware' => ['auth']], function() {
+        /**
+         * Home Routes client list,general fees
+         */
+        Route::get('/home', [HomeController::class, 'index'])->name('home.index');
+        Route::get('/generalFees', [HomeController::class, 'generalFees'])->name('home.generalFees');
+        Route::post('/generalFeesPost', [HomeController::class, 'generalFeesPost'])->name('home.generalFeesPost');
+
         /**
          * Logout Routes
          */

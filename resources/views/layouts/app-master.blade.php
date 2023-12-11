@@ -6,11 +6,15 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.87.0">
-    <title>Fixed top navbar example · Bootstrap v5.1</title>
+    <title></title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="{!! url('assets/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">
     <link href="{!! url('assets/bootstrap/css/style.css') !!}" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <style>
       .bd-placeholder-img {
@@ -44,6 +48,7 @@
         @yield('content')
     </div>
 
+   
     <script src="{!! url('assets/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
     <script type="text/javascript" src="{!! url('assets/bootstrap/js/jquery-3.3.1.slim.min.js') !!}"></script>
     {{-- <script type="text/javascript" src="{!! url('assets/bootstrap/js/popper.js') !!}"></script>            --}}
