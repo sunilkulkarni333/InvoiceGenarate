@@ -6,6 +6,7 @@ use App\Models\general_fees;
 use App\Models\user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -15,7 +16,48 @@ class HomeController extends Controller
         return view('home.index',compact('clients'));
     }
 
-    public function clientInvoices(){
+    public function addClient(){
+        return view('home.addClient');
+    }
+
+    public function saveClient(Request $request){
+        $validated = $request->validate([
+            'email' => 'required|unique:users',
+            'name' => 'required',
+            'client_id' => 'required',
+            'location' => 'required',
+        ]);
+
+        $request->role = 1;
+
+        user::create($request->all());
+        return redirect()->route('home.index')->with('success', 'Added successfully.');
+    }
+
+    public function editClient($userInfo){
+        $userData = user::find($userInfo);        
+        return view('home.editClient',compact('userData'));
+    }
+
+    public function updateClient(Request $request){        
+        $validated = $request->validate([
+            'email' => 'unique:users,email,'.$request->id,
+            'name' => 'required',
+            'client_id' => 'required',
+            'location' => 'required',
+        ]);             
+        $data = ['name' => $request->name,'email' => $request->email,'client_id' => $request->client_id,'location' => $request->location];
+        user::whereId($request->id)->update($data);
+        return redirect()->route('home.index')->with('success', 'Updated successfully.');
+    }
+
+    public function deleteClient($userId){                         
+        $userData = user::find($userId);
+        $userData->delete();
+        return redirect()->route('home.index')->with('success', 'Deleted successfully.');
+    }
+
+    public function clientInvoicesList(){
         return view('home.clientInvoices');
     }
 

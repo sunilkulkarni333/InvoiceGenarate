@@ -6,7 +6,12 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
-                    <h2 class="table-title-h2">Active FHU Clients</h2>  
+                    @include('layouts.partials.messages')
+
+                    <div class="table-title-div">
+                        <h2 class="table-title-h2">Active FHU Clients</h2> 
+                        <a href="{{ route('home.addClient') }}" class="btn cus-btn-or">Add Client</a>
+                     </div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -17,14 +22,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($clients as $client)
+                            @if(count($clients) > 0)
+                                @foreach ($clients as $client)
+                                    <tr>
+                                        <td><a href="{{ route('home.clientInvoices',$client->id)}}">{{$client->name}}</a></td>
+                                        <td>{{$client->client_id}}</td>
+                                        <td>{{$client->location}}</td>
+                                        <td>
+                                            <a href="" data-toggle="tooltip" title="Generate Invoice">
+                                                <i data-feather="file-plus"></i>
+                                            </a>
+                                            <a href="{{ route('home.editClient',$client->id)}}" data-toggle="tooltip" title="Edit">
+                                                <i data-feather="edit"></i>
+                                            </a>
+                                            <a href="{{ route('home.deleteClient',$client->id)}}" data-toggle="tooltip" title="Delete"> 
+                                                <i data-feather="trash-2"></i>
+                                            </a>
+                                        </td>                                    
+                                    </tr>                                 
+                                @endforeach    
+                            @else
                                 <tr>
-                                    <td><a href="{{ route('home.clientInvoices',$client->id)}}">{{$client->name}}</a></td>
-                                    <td>{{$client->client_id}}</td>
-                                    <td>{{$client->location}}</td>
-                                    <td><a href="">Generate Invoice</a></td>                                    
-                                </tr>                                 
-                            @endforeach                   
+                                    <td></td>
+                                    <td></td>
+                                    <td>No Clients Available</td>
+                                    <td></td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
                     {{ $clients->links() }}

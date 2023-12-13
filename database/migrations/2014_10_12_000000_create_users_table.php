@@ -20,9 +20,11 @@ return new class extends Migration
             $table->string('client_id')->nullable();
             $table->string('location')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->integer('role')->comment('0 -> admin,1-> clients');
+            $table->string('password')->nullable();
+            $table->integer('role')->default(1)->comment('0 -> admin,1-> clients');
+            $table->integer('status')->default(1)->comment('1 -> active,0-> disabled');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

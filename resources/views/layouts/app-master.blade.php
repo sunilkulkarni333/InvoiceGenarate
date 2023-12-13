@@ -15,6 +15,7 @@
     <link href="{!! url('assets/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">
     <link href="{!! url('assets/bootstrap/css/style.css') !!}" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
 
     <style>
       .bd-placeholder-img {
@@ -53,6 +54,8 @@
     <script type="text/javascript" src="{!! url('assets/bootstrap/js/jquery-3.3.1.slim.min.js') !!}"></script>
     {{-- <script type="text/javascript" src="{!! url('assets/bootstrap/js/popper.js') !!}"></script>            --}}
     <script type="text/javascript" src="{!! url('assets/bootstrap/js/bootstrap.min.js') !!}"></script> 
-      
+    <script>
+      feather.replace()
+    </script>
   </body>
 </html>
