@@ -255,6 +255,7 @@
                                     <div>
                                         <span>$</span>
                                         <input type="text" class="txtChar" id="ShippingPercentage" name="ShippingPercentage" value="{{ $fees->GENERALFEES->ShippingPercentage}}" required/>
+                                        <span>%</span>
                                     </div>
                                 </div>
                             </div><!-- /.GRID -->
