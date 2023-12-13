@@ -250,6 +250,13 @@
                                         <input type="text" class="txtChar" id="OnlineLiveInventoryReports" name="OnlineLiveInventoryReports" value="{{ $fees->GENERALFEES->OnlineLiveInventoryReports}}" required/>
                                     </div>
                                 </div>
+                                <div class="grid-flex">
+                                    <h6 class="w-700">Shipping Cost Margin</h6>
+                                    <div>
+                                        <span>$</span>
+                                        <input type="text" class="txtChar" id="ShippingPercentage" name="ShippingPercentage" value="{{ $fees->GENERALFEES->ShippingPercentage}}" required/>
+                                    </div>
+                                </div>
                             </div><!-- /.GRID -->
                         </div>
         

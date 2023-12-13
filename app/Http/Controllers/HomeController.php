@@ -140,7 +140,8 @@ class HomeController extends Controller
                         "MonthlyAccountManagement": "'.$request->MonthlyAccountManagement.'",
                         "WMSSoftwareIntegration": "'.$request->WMSSoftwareIntegration.'",
                         "WMSSoftwareSubscription": "'.$request->WMSSoftwareSubscription.'",
-                        "OnlineLiveInventoryReports": "'.$request->OnlineLiveInventoryReports.'"
+                        "OnlineLiveInventoryReports": "'.$request->OnlineLiveInventoryReports.'",
+                        "ShippingPercentage": "'.$request->ShippingPercentage.'"
                     }
                 }';
 
