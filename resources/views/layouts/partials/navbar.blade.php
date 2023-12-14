@@ -41,8 +41,16 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            @auth               
-              <li class="nav-item @if(\Request::route()->getName() == 'home.index' || \Request::route()->getName() == 'home.clientInvoices' || \Request::route()->getName() == 'home.addClient' || \Request::route()->getName() == 'home.editClient') active  @endif  ">
+            @auth       
+            @php
+              $clientPages = ['home.index','home.addClient','home.editClient','home.clientPayments','home.clientMonthlyInvoice','home.clientFees'];
+              $currentPage = \Request::route()->getName();
+              $isClientPageActive = '';
+              if(in_array($currentPage,$clientPages)){
+                $isClientPageActive = 'active';
+              }
+            @endphp        
+              <li class="nav-item {{$isClientPageActive}} ">
                   <a class="nav-link" href="{{ route('home.index')}}">Clients</a>
               </li>
               <li class="nav-item  @if(\Request::route()->getName() == 'home.generalFees') active @endif ">

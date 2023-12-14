@@ -7,7 +7,10 @@
           <div class="row">
             <div class="col">
               <div class="table-title-div">
-                 <h2 class="table-title-h2"><a href="{{route('home.index')}}"><img src="{{ asset('images/arrow.png') }}" class="img-fluid" width="22" /></a> Walmart Invoice</h2>
+                 <h2 class="table-title-h2">
+                    <a href="{{route('home.index')}}"><img src="{{ asset('images/arrow.png') }}" class="img-fluid" width="22" /></a> 
+                    {{$userData->name}} Invoice
+                </h2>
                  <a href="" class="btn cus-btn-or">Generate Invoice</a>
               </div>
 
@@ -26,7 +29,7 @@
                 <tbody>
                     <tr>
                         <td><span class="color-red">UnPaid</span></td>
-                        <td>182808</td>
+                        <td><a href="{{ route('home.clientMonthlyInvoice',[$user_id,182808]) }}">182808</a></td>
                         <td>December</td>
                         <td>12/14/2023</td>
                         <td>12/21/2023</td>
@@ -41,7 +44,7 @@
                     </tr>                
                     <tr>
                         <td><span class="color-green">Paid</span></td>
-                        <td>182808</td>
+                        <td><a href="{{ route('home.clientMonthlyInvoice',[$user_id,170091]) }}">170091</a></td>
                         <td>December</td>
                         <td>12/14/2023</td>
                         <td>12/21/2023</td>
@@ -60,9 +63,5 @@
           </div>
         </div>
       </section>
-    @endauth
-    
-    @guest        
-    <p class="lead">Your viewing the home page. Please login to view the restricted data.</p>
-    @endguest
+    @endauth  
 @endsection

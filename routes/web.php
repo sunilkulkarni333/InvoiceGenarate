@@ -31,20 +31,30 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          */
         Route::get('/', [LoginController::class, 'show'])->name('login.show');
         Route::post('/', [LoginController::class, 'login'])->name('login.perform');
-
     });
 
     Route::group(['middleware' => ['auth']], function() {
         /**
-         * Home Routes client list,(add,edit,delete client),view invoice, view general fees/edit/update,
-         */
+         * Home Routes client list,(add,edit,delete client)
+        */
         Route::get('/home', [HomeController::class, 'index'])->name('home.index');
         Route::get('/addClient', [HomeController::class, 'addClient'])->name('home.addClient');
         Route::post('/saveClient', [HomeController::class, 'saveClient'])->name('home.saveClient');
         Route::get('/editClient/{id}', [HomeController::class, 'editClient'])->name('home.editClient');
         Route::post('/updateClient', [HomeController::class, 'updateClient'])->name('home.updateClient');
         Route::get('/deleteClient/{id}', [HomeController::class, 'deleteClient'])->name('home.deleteClient');
-        Route::get('/clientInvoices/{id}', [HomeController::class, 'clientInvoicesList'])->name('home.clientInvoices');
+
+        /**
+         * view payment list,view Invoice,View & add & edit client fees
+        */
+        Route::get('/clientPayments/{id}', [HomeController::class, 'clientPaymentsList'])->name('home.clientPayments');
+        Route::get('/clientMonthlyInvoice/{user_id}/{invoiceId}', [HomeController::class, 'clientMonthlyInvoice'])->name('home.clientMonthlyInvoice');
+        Route::get('/clientFees/{user_id}/{invoiceId}', [HomeController::class, 'clientFees'])->name('home.clientFees');
+        Route::post('/clientFeesPost', [HomeController::class, 'clientFeesPost'])->name('home.clientFeesPost');
+
+        /**
+         * view general fees/edit/update,
+         */
         Route::get('/generalFees', [HomeController::class, 'generalFees'])->name('home.generalFees');
         Route::post('/generalFeesPost', [HomeController::class, 'generalFeesPost'])->name('home.generalFeesPost');
 

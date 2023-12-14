@@ -102,7 +102,7 @@ letter-spacing: 0.18px;
 	align-items: center;
 }
 .table-title-div .table-title-h2{
-	margin-bottom: 0;
+	margin-bottom: 12px;
 }
 .table-title-div img{
 	margin-right: 15px;
@@ -407,5 +407,29 @@ margin-bottom: 20px;
 	.container-fluid{
 		padding-left: 45px;
 		padding-right: 45px;
+	}
+}
+@media(max-width:767px){
+	.table,table{
+		display: block;
+	    width: 100%;
+	    overflow-x: auto;
+	    -webkit-overflow-scrolling: touch;
+	    -ms-overflow-style: -ms-autohiding-scrollbar;
+	}
+	.nav-item,.navbar-nav{
+		padding-left: 0;
+	}
+	.table-title-div,.grid-outer-flex,.grid-outer-flex-2,.table-bottom-grid{
+		display: block;
+	}
+	.grid-outer-flex-2-right div{
+		padding-left: 0;
+	}
+	.table-button-div .btn{
+		margin-bottom: 10px;
+	}
+	.grid-flex{
+		padding: 0 10px;
 	}
 }

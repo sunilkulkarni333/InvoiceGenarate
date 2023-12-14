@@ -25,7 +25,7 @@
                             @if(count($clients) > 0)
                                 @foreach ($clients as $client)
                                     <tr>
-                                        <td><a href="{{ route('home.clientInvoices',$client->id)}}">{{$client->name}}</a></td>
+                                        <td><a href="{{ route('home.clientPayments',$client->id)}}">{{$client->name}}</a></td>
                                         <td>{{$client->client_id}}</td>
                                         <td>{{$client->location}}</td>
                                         <td>
