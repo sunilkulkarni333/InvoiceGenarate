@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\general_fees;
 use App\Models\client_fees;
 use App\Models\user;
+use App\Models\client_monthly_invoices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -254,5 +255,20 @@ class HomeController extends Controller
         DB::table("general_fees")->update(['fullfillment_fees' => $data]);
 
         return redirect()->route('home.generalFees')->withsuccess('Updated Successfully');
+    }
+
+    public function addClientLineItem(Request $request){        
+        $validated = $request->validate([
+            'activity' => 'required',
+            'description' => 'required',
+            'qty' => 'required',
+            'rate' => 'required',            
+        ]);  
+        
+        $data = ['activity' => $request->activity,'description' => $request->description,'qty' => $request->qty,'rate' => $request->rate,
+                'client_id' => $request->client_id,'month' => date('M'),'year' =>date('Y')];
+
+        client_monthly_invoices::create($data);
+        return redirect()->route('home.clientMonthlyInvoice',[$request->client_id,$request->invoiceId])->withsuccess('Updated Successfully');
     }
 }

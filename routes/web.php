@@ -45,10 +45,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/deleteClient/{id}', [HomeController::class, 'deleteClient'])->name('home.deleteClient');
 
         /**
-         * view payment list,view Invoice,View & add & edit client fees
+         * view payment list,view Invoice,add line items,add hub employee in general,View & add & edit client fees
         */
         Route::get('/clientPayments/{id}', [HomeController::class, 'clientPaymentsList'])->name('home.clientPayments');
         Route::get('/clientMonthlyInvoice/{user_id}/{invoiceId}', [HomeController::class, 'clientMonthlyInvoice'])->name('home.clientMonthlyInvoice');
+        Route::post('/addClientLineItem',[HomeController::class, 'addClientLineItem'])->name('home.addClientLineItem');
         Route::get('/clientFees/{user_id}/{invoiceId}', [HomeController::class, 'clientFees'])->name('home.clientFees');
         Route::post('/clientFeesPost', [HomeController::class, 'clientFeesPost'])->name('home.clientFeesPost');
 
