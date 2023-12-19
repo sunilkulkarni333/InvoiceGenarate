@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('month');
             $table->string('year');
             $table->integer('client_id');
+            $table->integer('status')->default(0)->comment('0 -> pending,1->approve,2->reject');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -51,9 +51,5 @@
           </div>
         </div>
     </section>
-    @endauth
-    
-    @guest        
-    <p class="lead">Your viewing the home page. Please login to view the restricted data.</p>
-    @endguest
+    @endauth    
 @endsection

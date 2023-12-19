@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    protected $map;
+
+    public function __construct()
+    {
+        $this->map = array();
+    }
+
     public function index() 
     {       
         $clients = user::where('role',1)->paginate(20);        
@@ -117,7 +124,7 @@ class HomeController extends Controller
                              "TemperatureControlPalletStorage": "'.$request->TemperatureControlPalletStorage.'"
                          },
                          "AdditionalServices": {
-                             "Photographs": "'.$request->Photographs.'",
+                             "PhotoGraphs": "'.$request->PhotoGraphs.'",
                              "RecycleDisposal": "'.$request->RecycleDisposal.'",
                              "CycleCountInventoryCount": "'.$request->CycleCountInventoryCount.'",
                              "CustomAPIIntegration": "'.$request->CustomAPIIntegration.'",
@@ -126,10 +133,10 @@ class HomeController extends Controller
                      },
                      "FULFILLMENTFEES": {
                          "B2COrderFulfillment": {
-                             "OrderFulfillment": "'.$request->OrderFulfillment.'",
-                             "OrderFulfillment1000ordersmonth": "'.$request->OrderFulfillment1000ordersmonth.'",
-                             "OrderFulfillment500ordersmonth": "'.$request->OrderFulfillment500ordersmonth.'",
-                             "OrderFulfillment0ordersmonth": "'.$request->OrderFulfillment0ordersmonth.'",
+                             "OrderFulFillment": "'.$request->OrderFulFillment.'",
+                             "OrderFulFillment1000OrdersMonth": "'.$request->OrderFulFillment1000OrdersMonth.'",
+                             "OrderFulFillment500OrdersMonth": "'.$request->OrderFulFillment500OrdersMonth.'",
+                             "OrderFulFillment0OrdersMonth": "'.$request->OrderFulFillment0OrdersMonth.'",
                              "AdditionalItemPick": "'.$request->AdditionalItemPick.'",
                              "AdditionalItemPick1000": "'.$request->AdditionalItemPick1000.'",
                              "AdditionalItemPick500": "'.$request->AdditionalItemPick500.'",
@@ -138,12 +145,12 @@ class HomeController extends Controller
                              "Inserts": "'.$request->Inserts.'"
                          },
                          "B2BOrderFulfillment": {
-                             "CaseMasterCartonpicking": "'.$request->CaseMasterCartonpicking.'"
+                             "CaseMasterCartonPicking": "'.$request->CaseMasterCartonPicking.'"
                          },
                          "EcomReturnManagement": {
                              "ShipmentInclQAreporting": "'.$request->ShipmentInclQAreporting.'",
-                             "Returnperitem": "'.$request->Returnperitem.'",
-                             "Returnperorde": "'.$request->Returnperorde.'"
+                             "ReturnPerItem": "'.$request->ReturnPerItem.'",
+                             "ReturnPerOrder": "'.$request->ReturnPerOrder.'"
                          },
                          "RepackingSpecialProjectPreparation": {
                              "RepackingKitting": "'.$request->RepackingKitting.'",
@@ -177,80 +184,80 @@ class HomeController extends Controller
 
     public function generalFeesPost(Request $request){
 
-       $data = '{
-                    "WAREHOUSESERVICES": {
-                        "UnloadingLoadingContainers": {
-                            "Palletized": {
-                                "LTL": "'.$request->LTL.'",
-                                "twentyftContainer": "'.$request->twentyftContainer.'",
-                                "fourtyftContainer": "'.$request->fourtyftContainer.'",
-                                "fityThreeftContainer": "'.$request->fityThreeftContainer.'"
-                            },
-                            "Unpalletized": {
-                                "ManualUnloading": "'.$request->ManualUnloading.'"
-                            }
-                        },
-                        "ReceivingAllocating": {
-                            "ReceivingASNFee": "'.$request->ReceivingASNFee.'",
-                            "PalletReceivingAllocating": "'.$request->PalletReceivingAllocating.'",
-                            "ManualReceivingAllocating": "'.$request->ManualReceivingAllocating.'"
-                        },
-                        "Supplies": {
-                            "PalletizedShrinkWrapping": "'.$request->PalletizedShrinkWrapping.'",
-                            "ActualCostofMaterial": "'.$request->ActualCostofMaterial.'"
-                        },
-                        "ProductStorage": {
-                            "StandardPalletStorage": "'.$request->StandardPalletStorage.'",
-                            "LargePallet": "'.$request->LargePallet.'",
-                            "XLargePallet": "'.$request->XLargePallet.'",
-                            "FloorLoadedSpace": "'.$request->FloorLoadedSpace.'",
-                            "SmallBins": "'.$request->SmallBins.'",
-                            "MediumBins": "'.$request->MediumBins.'",
-                            "LargeBins": "'.$request->LargeBins.'",
-                            "TemperatureControlPalletStorage": "'.$request->TemperatureControlPalletStorage.'"
-                        },
-                        "AdditionalServices": {
-                            "Photographs": "'.$request->Photographs.'",
-                            "RecycleDisposal": "'.$request->RecycleDisposal.'",
-                            "CycleCountInventoryCount": "'.$request->CycleCountInventoryCount.'",
-                            "CustomAPIIntegration": "'.$request->CustomAPIIntegration.'",
-                            "CustomEDIIntegration": "'.$request->CustomEDIIntegration.'"
-                        }
+        $data = '{
+            "WAREHOUSESERVICES": {
+                "UnloadingLoadingContainers": {
+                    "Palletized": {
+                        "LTL": "'.$request->LTL.'",
+                        "twentyftContainer": "'.$request->twentyftContainer.'",
+                        "fourtyftContainer": "'.$request->fourtyftContainer.'",
+                        "fityThreeftContainer": "'.$request->fityThreeftContainer.'"
                     },
-                    "FULFILLMENTFEES": {
-                        "B2COrderFulfillment": {
-                            "OrderFulfillment": "'.$request->OrderFulfillment.'",
-                            "OrderFulfillment1000ordersmonth": "'.$request->OrderFulfillment1000ordersmonth.'",
-                            "OrderFulfillment500ordersmonth": "'.$request->OrderFulfillment500ordersmonth.'",
-                            "OrderFulfillment0ordersmonth": "'.$request->OrderFulfillment0ordersmonth.'",
-                            "AdditionalItemPick": "'.$request->AdditionalItemPick.'",
-                            "AdditionalItemPick1000": "'.$request->AdditionalItemPick1000.'",
-                            "AdditionalItemPick500": "'.$request->AdditionalItemPick500.'",
-                            "AdditionalItemPick0": "'.$request->AdditionalItemPick0.'",
-                            "Labelling": "'.$request->Labelling.'",
-                            "Inserts": "'.$request->Inserts.'"
-                        },
-                        "B2BOrderFulfillment": {
-                            "CaseMasterCartonpicking": "'.$request->CaseMasterCartonpicking.'"
-                        },
-                        "EcomReturnManagement": {
-                            "ShipmentInclQAreporting": "'.$request->ShipmentInclQAreporting.'",
-                            "Returnperitem": "'.$request->Returnperitem.'",
-                            "Returnperorde": "'.$request->Returnperorde.'"
-                        },
-                        "RepackingSpecialProjectPreparation": {
-                            "RepackingKitting": "'.$request->RepackingKitting.'",
-                            "UrgentRushProjectPrep": "'.$request->UrgentRushProjectPrep.'"
-                        }
-                    },
-                    "GENERALFEES": {
-                        "MonthlyAccountManagement": "'.$request->MonthlyAccountManagement.'",
-                        "WMSSoftwareIntegration": "'.$request->WMSSoftwareIntegration.'",
-                        "WMSSoftwareSubscription": "'.$request->WMSSoftwareSubscription.'",
-                        "OnlineLiveInventoryReports": "'.$request->OnlineLiveInventoryReports.'",
-                        "ShippingPercentage": "'.$request->ShippingPercentage.'"
+                    "Unpalletized": {
+                        "ManualUnloading": "'.$request->ManualUnloading.'"
                     }
-                }';
+                },
+                "ReceivingAllocating": {
+                    "ReceivingASNFee": "'.$request->ReceivingASNFee.'",
+                    "PalletReceivingAllocating": "'.$request->PalletReceivingAllocating.'",
+                    "ManualReceivingAllocating": "'.$request->ManualReceivingAllocating.'"
+                },
+                "Supplies": {
+                    "PalletizedShrinkWrapping": "'.$request->PalletizedShrinkWrapping.'",
+                    "ActualCostofMaterial": "'.$request->ActualCostofMaterial.'"
+                },
+                "ProductStorage": {
+                    "StandardPalletStorage": "'.$request->StandardPalletStorage.'",
+                    "LargePallet": "'.$request->LargePallet.'",
+                    "XLargePallet": "'.$request->XLargePallet.'",
+                    "FloorLoadedSpace": "'.$request->FloorLoadedSpace.'",
+                    "SmallBins": "'.$request->SmallBins.'",
+                    "MediumBins": "'.$request->MediumBins.'",
+                    "LargeBins": "'.$request->LargeBins.'",
+                    "TemperatureControlPalletStorage": "'.$request->TemperatureControlPalletStorage.'"
+                },
+                "AdditionalServices": {
+                    "PhotoGraphs": "'.$request->PhotoGraphs.'",
+                    "RecycleDisposal": "'.$request->RecycleDisposal.'",
+                    "CycleCountInventoryCount": "'.$request->CycleCountInventoryCount.'",
+                    "CustomAPIIntegration": "'.$request->CustomAPIIntegration.'",
+                    "CustomEDIIntegration": "'.$request->CustomEDIIntegration.'"
+                }
+            },
+            "FULFILLMENTFEES": {
+                "B2COrderFulfillment": {
+                    "OrderFulFillment": "'.$request->OrderFulFillment.'",
+                    "OrderFulFillment1000OrdersMonth": "'.$request->OrderFulFillment1000OrdersMonth.'",
+                    "OrderFulFillment500OrdersMonth": "'.$request->OrderFulFillment500OrdersMonth.'",
+                    "OrderFulFillment0OrdersMonth": "'.$request->OrderFulFillment0OrdersMonth.'",
+                    "AdditionalItemPick": "'.$request->AdditionalItemPick.'",
+                    "AdditionalItemPick1000": "'.$request->AdditionalItemPick1000.'",
+                    "AdditionalItemPick500": "'.$request->AdditionalItemPick500.'",
+                    "AdditionalItemPick0": "'.$request->AdditionalItemPick0.'",
+                    "Labelling": "'.$request->Labelling.'",
+                    "Inserts": "'.$request->Inserts.'"
+                },
+                "B2BOrderFulfillment": {
+                    "CaseMasterCartonPicking": "'.$request->CaseMasterCartonPicking.'"
+                },
+                "EcomReturnManagement": {
+                    "ShipmentInclQAreporting": "'.$request->ShipmentInclQAreporting.'",
+                    "ReturnPerItem": "'.$request->ReturnPerItem.'",
+                    "ReturnPerOrder": "'.$request->ReturnPerOrder.'"
+                },
+                "RepackingSpecialProjectPreparation": {
+                    "RepackingKitting": "'.$request->RepackingKitting.'",
+                    "UrgentRushProjectPrep": "'.$request->UrgentRushProjectPrep.'"
+                }
+            },
+            "GENERALFEES": {
+                "MonthlyAccountManagement": "'.$request->MonthlyAccountManagement.'",
+                "WMSSoftwareIntegration": "'.$request->WMSSoftwareIntegration.'",
+                "WMSSoftwareSubscription": "'.$request->WMSSoftwareSubscription.'",
+                "OnlineLiveInventoryReports": "'.$request->OnlineLiveInventoryReports.'",
+                "ShippingPercentage": "'.$request->ShippingPercentage.'"
+            }
+        }';
 
         DB::table("general_fees")->update(['fullfillment_fees' => $data]);
 
@@ -266,9 +273,42 @@ class HomeController extends Controller
         ]);  
         
         $data = ['activity' => $request->activity,'description' => $request->description,'qty' => $request->qty,'rate' => $request->rate,
-                'client_id' => $request->client_id,'month' => date('M'),'year' =>date('Y')];
+                'client_id' => $request->client_id,'month' => date('M'),'year' =>date('Y'),'status' => 1];
 
         client_monthly_invoices::create($data);
         return redirect()->route('home.clientMonthlyInvoice',[$request->client_id,$request->invoiceId])->withsuccess('Updated Successfully');
+    }
+
+    public function wareHouseAccess(){
+        $clients = user::select('id','name')->where('role',1)->get();  
+        return view('wareHouseAccess',compact('clients'));
+    }
+
+    public function getClientService(Request $request){
+        $client_fees =  client_fees::where('client_id',$request->client_id)->get();
+        $service = array();                
+        if(count($client_fees) > 0){            
+            $fees = json_decode($client_fees[0]->fullfillment_fees, true);
+            $service = $this->getFormateServices($fees);
+            foreach($this->map as $data){
+                foreach($data as $key=>$value){
+                    $service[$key] = $value;
+                }
+            }            
+            return  response()->json($service,200);
+        }else{
+            $service['status'] = 0;
+            return response()->json($service,200);
+        }
+    }
+
+    function getFormateServices($fees, $depth = 0) {
+        foreach ($fees as $key => $value) {
+            if(is_array($value)){                
+                $this->getFormateServices($value, $depth + 1);
+            }else{ 
+                array_push($this->map,array($key=>$value));                                     
+            }
+        }        
     }
 }

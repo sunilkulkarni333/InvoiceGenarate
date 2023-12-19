@@ -137,28 +137,28 @@
                                 </div>
                                 <div>
                                     <span>$</span>
-                                    <input type="text" class="txtChar" id="OrderFulfillment" name="OrderFulfillment" value="{{ $fees->FULFILLMENTFEES->B2COrderFulfillment->OrderFulfillment}}" required/>
+                                    <input type="text" class="txtChar" id="OrderFulFillment" name="OrderFulFillment" value="{{ $fees->FULFILLMENTFEES->B2COrderFulfillment->OrderFulFillment}}" required/>
                                 </div>
                             </div>
                             <div class="grid-flex">
                                 <h6>Order Fulfillment - (1,000 - 5,000 orders/month)</h6>
                                 <div>
                                     <span>$</span>
-                                    <input type="text" class="txtChar" id="OrderFulfillment1000ordersmonth" name="OrderFulfillment1000ordersmonth" value="{{ $fees->FULFILLMENTFEES->B2COrderFulfillment->OrderFulfillment1000ordersmonth}}" required/>
+                                    <input type="text" class="txtChar" id="OrderFulFillment1000OrdersMonth" name="OrderFulFillment1000OrdersMonth" value="{{ $fees->FULFILLMENTFEES->B2COrderFulfillment->OrderFulFillment1000OrdersMonth}}" required/>
                                 </div>
                             </div>
                             <div class="grid-flex">
                                 <h6>Order Fulfillment - (500 - 1,000 orders/month)</h6>
                                 <div>
                                     <span>$</span>
-                                    <input type="text" class="txtChar" id="OrderFulfillment500ordersmonth" name="OrderFulfillment500ordersmonth" value="{{ $fees->FULFILLMENTFEES->B2COrderFulfillment->OrderFulfillment500ordersmonth}}" required/>
+                                    <input type="text" class="txtChar" id="OrderFulFillment500OrdersMonth" name="OrderFulFillment500OrdersMonth" value="{{ $fees->FULFILLMENTFEES->B2COrderFulfillment->OrderFulFillment500OrdersMonth}}" required/>
                                 </div>
                             </div>
                             <div class="grid-flex">
                                 <h6>Order Fulfillment - (0 - 500 orders/month)</h6>
                                 <div>
                                     <span>$</span>
-                                    <input type="text" class="txtChar" id="OrderFulfillment0ordersmonth" name="OrderFulfillment0ordersmonth" value="{{ $fees->FULFILLMENTFEES->B2COrderFulfillment->OrderFulfillment0ordersmonth}}" required/>
+                                    <input type="text" class="txtChar" id="OrderFulFillment0OrdersMonth" name="OrderFulFillment0OrdersMonth" value="{{ $fees->FULFILLMENTFEES->B2COrderFulfillment->OrderFulFillment0OrdersMonth}}" required/>
                                 </div>
                             </div>
                             <div class="grid-flex">
@@ -348,7 +348,7 @@
                                     </div>
                                     <div>
                                         <span>$</span>
-                                        <input type="text" class="txtChar" id="Photographs" name="Photographs" value="{{ $fees->WAREHOUSESERVICES->AdditionalServices->Photographs}}" required/>
+                                        <input type="text" class="txtChar" id="PhotoGraphs" name="PhotoGraphs" value="{{ $fees->WAREHOUSESERVICES->AdditionalServices->PhotoGraphs}}" required/>
                                     </div>          
                                 </div>
                                 <div class="grid-flex">
@@ -394,7 +394,7 @@
                                         <p class="second-p">Pricing for Cross-Docking or Pallet-in/out operation, see "Unloading / Loading Containers* Section on next page</p>
                                     </div>
                                     <span>$</span>
-                                    <input type="text" class="txtChar" id="CaseMasterCartonpicking" name="CaseMasterCartonpicking" value="{{ $fees->FULFILLMENTFEES->B2BOrderFulfillment->CaseMasterCartonpicking}}" required/>
+                                    <input type="text" class="txtChar" id="CaseMasterCartonPicking" name="CaseMasterCartonPicking" value="{{ $fees->FULFILLMENTFEES->B2BOrderFulfillment->CaseMasterCartonPicking}}" required/>
                                 </div>
                             </div><!-- /.GRID -->
             
@@ -418,7 +418,7 @@
                                     </div>
                                     <div>
                                         <span>$</span>
-                                        <input type="text" class="txtChar" id="Returnperitem" name="Returnperitem" value="{{ $fees->FULFILLMENTFEES->EcomReturnManagement->Returnperitem}}" required/>
+                                        <input type="text" class="txtChar" id="ReturnPerItem" name="ReturnPerItem" value="{{ $fees->FULFILLMENTFEES->EcomReturnManagement->ReturnPerItem}}" required/>
                                     </div>    
                                 </div>
                                 <div class="grid-flex">
@@ -428,7 +428,7 @@
                                     </div>
                                     <div>
                                         <span>$</span>
-                                        <input type="text" class="txtChar" id="Returnperorde" name="Returnperorde" value="{{ $fees->FULFILLMENTFEES->EcomReturnManagement->Returnperorde}}" required/>
+                                        <input type="text" class="txtChar" id="ReturnPerOrder" name="ReturnPerOrder" value="{{ $fees->FULFILLMENTFEES->EcomReturnManagement->ReturnPerOrder}}" required/>
                                     </div>    
                                 </div>
                             </div><!-- /.GRID -->
@@ -468,11 +468,7 @@
             </form>
         </div>
       </section>
-    @endauth
-    
-    @guest        
-    <p class="lead">Your viewing the home page. Please login to view the restricted data.</p>
-    @endguest
+    @endauth    
 
     <script>
         $(".txtChar").keyup(function() {

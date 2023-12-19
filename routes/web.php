@@ -31,6 +31,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          */
         Route::get('/', [LoginController::class, 'show'])->name('login.show');
         Route::post('/', [LoginController::class, 'login'])->name('login.perform');
+
+        /**
+         * FHU Team add line items, view details on form
+        */
+        Route::get('/wareHouseAccess', [HomeController::class, 'wareHouseAccess'])->name('wareHouseAccess');
+        Route::post('getClientService',[HomeController::class,'getClientService'])->name('wareHouseAccess.clientService');
     });
 
     Route::group(['middleware' => ['auth']], function() {
@@ -49,7 +55,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         */
         Route::get('/clientPayments/{id}', [HomeController::class, 'clientPaymentsList'])->name('home.clientPayments');
         Route::get('/clientMonthlyInvoice/{user_id}/{invoiceId}', [HomeController::class, 'clientMonthlyInvoice'])->name('home.clientMonthlyInvoice');
-        Route::post('/addClientLineItem',[HomeController::class, 'addClientLineItem'])->name('home.addClientLineItem');
+        Route::post('/addClientLineItem',[HomeController::class, 'addClientLineItem'])->name('client.addClientLineItem');
         Route::get('/clientFees/{user_id}/{invoiceId}', [HomeController::class, 'clientFees'])->name('home.clientFees');
         Route::post('/clientFeesPost', [HomeController::class, 'clientFeesPost'])->name('home.clientFeesPost');
 

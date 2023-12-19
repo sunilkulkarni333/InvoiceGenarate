@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.87.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title></title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,16 +43,18 @@
     <link href="{!! url('assets/css/app.css') !!}" rel="stylesheet">
 </head>
 <body>
+  
+    @auth
+      @include('layouts.partials.navbar')
+    @endauth
     
-    @include('layouts.partials.navbar')
-
     <div class="container-fluid contentPadding">
         @yield('content')
     </div>
 
    
     <script src="{!! url('assets/bootstrap/js/bootstrap.bundle.min.js') !!}"></script>
-    <script type="text/javascript" src="{!! url('assets/bootstrap/js/jquery-3.3.1.slim.min.js') !!}"></script>
+    {{-- <script type="text/javascript" src="{!! url('assets/bootstrap/js/jquery-3.3.1.slim.min.js') !!}"></script> --}}
     {{-- <script type="text/javascript" src="{!! url('assets/bootstrap/js/popper.js') !!}"></script>            --}}
     <script type="text/javascript" src="{!! url('assets/bootstrap/js/bootstrap.min.js') !!}"></script> 
     <script>

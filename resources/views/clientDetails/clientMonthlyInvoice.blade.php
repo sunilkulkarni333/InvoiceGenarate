@@ -46,7 +46,7 @@
               </button> --}}
             </div>
             <div class="modal-body">
-              <form method="POST" action="{{ route('home.addClientLineItem') }}">
+              <form method="POST" action="{{ route('client.addClientLineItem') }}">
                 @csrf
                 <input type="hidden" name="client_id" id="client_id" value="{{$user_id}}">
                 <input type="hidden" name="invoiceId" id="invoiceId" value="{{$invoiceId}}">
