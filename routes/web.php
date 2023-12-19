@@ -37,6 +37,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         */
         Route::get('/wareHouseAccess', [HomeController::class, 'wareHouseAccess'])->name('wareHouseAccess');
         Route::post('getClientService',[HomeController::class,'getClientService'])->name('wareHouseAccess.clientService');
+        Route::post('/addClientService',[HomeController::class,'addClientService'])->name('wareHouseAccess.addClientService');
     });
 
     Route::group(['middleware' => ['auth']], function() {
@@ -64,6 +65,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          */
         Route::get('/generalFees', [HomeController::class, 'generalFees'])->name('home.generalFees');
         Route::post('/generalFeesPost', [HomeController::class, 'generalFeesPost'])->name('home.generalFeesPost');
+
+         /**
+         * view monthly wareHouseAccess request line items 
+         */
+        Route::get('/viewRequestedItems/{user_id}/{invoiceId}', [HomeController::class, 'viewRequestedItems'])->name('warehouse.requestedList');
 
         /**
          * Logout Routes

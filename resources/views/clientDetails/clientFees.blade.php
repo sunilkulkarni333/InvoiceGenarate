@@ -17,7 +17,7 @@
                     <div class="table-button-div m-20">
                         <div class="table-button-div-left">
                         <a href="{{ route('home.clientMonthlyInvoice',[$user_id,$invoiceId])}}" class="btn cus-btn-white">Invoice</a>
-                        <a href="" class="btn cus-btn-white cus-btn-active">Fulfillment Fees</a>
+                        <a href="{{ route('home.clientFees',[$user_id,$invoiceId]) }}" class="btn cus-btn-white cus-btn-active">Fulfillment Fees</a>
                         </div>
                     </div>
                 </div>

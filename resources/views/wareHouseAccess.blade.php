@@ -1,6 +1,11 @@
 @extends('layouts.app-master')
 
 @section('content')
+<style>
+    .error{
+        color:red;
+    }
+</style>
     @guest
     <section class="pop-over-section">
         <div class="container-fluid">
@@ -8,30 +13,38 @@
             <div class="col align-self-center">
                 <img src="{{ asset('images/logo-grid.png') }}" class="img-fluid" alt="" width="150" />
                 <div class="pop-over-div">
-                    <form>
+                    @include('layouts.partials.messages')
+                    <form method="POST" action="{{ route('wareHouseAccess.addClientService') }}">
+                        @csrf
                         <div class="form-group">
                             <label for="activity">Company</label>
-                            <select name="client_id" id="client_id" class="form-control">
-                                <option vlaue="">Select Company</option>
+                            <select name="client_id" id="client_id" class="form-control" onchange="getClientDetails();">                                                             
                                 @foreach ($clients as $item)
                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                             </select>
+                            <span class="error">{{ $errors->first('client_id') }}</span>
                         </div>
                         <div class="form-group">
                             <label for="activity">Services</label>                          
                             <div id="services">
                             
-                            </div>                               
+                            </div> 
+                            <span class="error">{{ $errors->first('activity') }}</span>                              
                         </div>
-                        <input type="text" name="clientService" id="clientService" value="">
+                        <input type="hidden" name="clientService" id="clientService" value="">
+                        <input type="hidden" name="serviceValue" id="serviceValue" value="{{ old('serviceValue') }}">
+                        <input type="hidden" name="selectedActivity" id="selectedActivity" value="{{ old('selectedActivity') }}">
+                        <input type="hidden" name="serviceSpaceValue" id="serviceSpaceValue" value="{{ old('serviceSpaceValue') }}">
                         <div class="form-group">
-                            <label for="activity">Quantity</label>
-                            <input type="qty" name="qty" class="form-control" id="activity" aria-describedby="" placeholder="Quantity">
+                            <label for="qty">Quantity</label>
+                            <input type="qty" name="qty" class="form-control" id="qty" aria-describedby="" placeholder="Quantity" value="{{ old('qty') }}">
+                            <span class="error">{{ $errors->first('qty') }}</span>
                         </div>
                         <div class="form-group">
                             <label for="description">Note</label>
-                            <textarea id="description" name="description" class="form-control" name="" rows="2" cols="40"></textarea>
+                            <textarea id="description" name="description" class="form-control" name="" rows="2" cols="40">{{ old('description') }}</textarea>
+                            <span class="error">{{ $errors->first('description') }}</span>
                         </div>
                         <div class="popup-btn">
                         <button type="submit" class="btn">Submit</button>
@@ -45,42 +58,65 @@
     @endguest
 
     <script>    
-        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        $("#client_id").change(function(){
-            $.ajax({
-                /* the route pointing to the post function */
-                url: '{{ route("wareHouseAccess.clientService") }}',
-                type: 'POST',
-                /* send the csrf-token and the input to the controller */
-                data: {_token: CSRF_TOKEN, client_id: $('#client_id').val()},
-                dataType: 'JSON',
-                /* remind that 'data' is the response of the AjaxController */
-                success: function (data) { 
-                    //console.log('console.log',data.status);
-                    var service = '';
-                    if(data.status != 0){
-                        service += '<select name="activity" id="activity" class="form-control">';   
-                            service += '<div id="services">';
-                            $.each(data, function (i, value) { 
-                                stringData = i.replace(/([a-z])([A-Z])/g, '$1 $2');
-                                stringData = stringData.replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')                         
-                                service += '<option value="'+i+'">'+stringData+'</option>';                        
-                            });
-                        service += '</div>';  
-                        service += '</select>';  
-                        $('#services').html(service);
+    $( document ).ready(function() {       
+        getClientDetails();
+    });
 
-                        $('#clientService').val(JSON.stringify(data));
-                    }else{
-                        service += '<select name="activity" id="activity" class="form-control">';   
-                            service += '<option value="">No Service For This Client</option>'
-                        service += '</select>';  
-                        $('#services').html(service);
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    function getClientDetails(){
+        $('#serviceValue').val('');     
+        $('#clientService').val('');             
+        $.ajax({                
+            url: '{{ route("wareHouseAccess.clientService") }}',
+            type: 'POST',
+            data: {_token: CSRF_TOKEN, client_id: $('#client_id').val()},
+            dataType: 'JSON',                
+            success: function (data) {                    
+                var service = '';
+                if(data.status != 0){
+                    service += '<select name="activity" id="activity" class="form-control" onchange="activityValue()">';   
+                        service += '<div id="services">';
+                            service += '<option value="">Select Activity</option>';                            
+                            var oldPresent = $('#selectedActivity').val(); 
+                        $.each(data, function (i, value) { 
+                            var selected = '';
+                            if(i == oldPresent && oldPresent != ''){
+                                selected = 'selected';
+                            }
+                            stringData = i.replace(/([a-z])([A-Z])/g, '$1 $2');
+                            stringData = stringData.replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')                         
+                            service += '<option value="'+i+'" '+selected+'>'+stringData+'</option>';                        
+                        });
+                    service += '</div>';  
+                    service += '</select>';  
+                    $('#services').html(service);
+
+                    $('#clientService').val(JSON.stringify(data));
+                    if( oldPresent != ''){
+                        activityValue();
                     }
-                   
+                }else{
+                    service += '<select name="activity" id="activity" class="form-control">';   
+                        service += '<option value="">No Service For This Client</option>'
+                    service += '</select>';  
+                    $('#services').html(service);
                 }
-            }); 
-        });    
-     </script>
+                
+            }
+        });                 
+    }    
+
+
+    function activityValue(){            
+        var selectedActivity = $('#activity').val();
+        var clientService = $('#clientService').val();
+        clientService = JSON.parse(clientService);
+        var serviceValue = clientService[selectedActivity];  
+        $('#serviceValue').val(serviceValue);
+        $('#selectedActivity').val(selectedActivity);
+        var activitySpace = $( "#activity option:selected" ).text(); 
+        $('#serviceSpaceValue').val(activitySpace);         
+    };
+    </script>
 @endsection
 

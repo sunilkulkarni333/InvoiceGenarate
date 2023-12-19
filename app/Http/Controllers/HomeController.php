@@ -311,4 +311,25 @@ class HomeController extends Controller
             }
         }        
     }
+
+    public function addClientService(Request $request){
+        $validated = $request->validate([
+            'client_id' => 'required',
+            'activity' => 'required',
+            'qty' => 'required',
+            'description' => 'required',            
+        ]);  
+        
+        $data = ['activity_key' => $request->activity,'activity'=>$request->serviceSpaceValue,'description' => $request->description,'qty' => $request->qty,'rate' => $request->serviceValue,
+        'client_id' => $request->client_id,'month' => date('M'),'year' =>date('Y'),'status' => 0];
+
+        client_monthly_invoices::create($data);
+        return redirect()->route('wareHouseAccess')->withsuccess('Added Successfully');
+    }
+
+
+    public function viewRequestedItems($user_id,$invoiceId){
+        $userData = user::find($user_id);
+        return view('clientDetails.requestedWarehouseList',compact('user_id','invoiceId','userData'));
+    }
 }

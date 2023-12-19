@@ -23,7 +23,7 @@
                 <div class="table-button-div-left">
                    <a href="{{ route('home.clientMonthlyInvoice',[$user_id,$invoiceId])}}" class="btn cus-btn-white cus-btn-active">Invoice</a>
                    <a href="{{ route('home.clientFees',[$user_id,$invoiceId]) }}" class="btn cus-btn-white">Fulfillment Fees</a>
-                   <a href="" class="btn cus-btn-white">Approvals</a>
+                   <a href="{{ route('warehouse.requestedList',[$user_id,$invoiceId]) }}" class="btn cus-btn-white">Approvals</a>
                 </div>
                 <div class="table-button-div-right">
                   <a href="#!" class="btn cus-btn-or"  data-toggle="modal" data-target="#exampleModal">Add Line item</a>
