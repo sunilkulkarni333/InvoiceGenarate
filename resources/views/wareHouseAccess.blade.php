@@ -26,7 +26,7 @@
                             <span class="error">{{ $errors->first('client_id') }}</span>
                         </div>
                         <div class="form-group">
-                            <label for="activity">Services</label>                          
+                            <label for="activity">Services(Activity)</label>                          
                             <div id="services">
                             
                             </div> 
