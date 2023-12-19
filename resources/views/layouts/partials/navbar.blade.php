@@ -43,7 +43,7 @@
         <ul class="navbar-nav mr-auto">
             @auth       
             @php
-              $clientPages = ['home.index','home.addClient','home.editClient','home.clientPayments','home.clientMonthlyInvoice','home.clientFees'];
+              $clientPages = ['home.index','home.addClient','home.editClient','home.clientPayments','home.clientMonthlyInvoice','home.clientFees','warehouse.requestedList'];
               $currentPage = \Request::route()->getName();
               $isClientPageActive = '';
               if(in_array($currentPage,$clientPages)){

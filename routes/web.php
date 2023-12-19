@@ -55,9 +55,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          * view payment list,view Invoice,add line items,add hub employee in general,View & add & edit client fees
         */
         Route::get('/clientPayments/{id}', [HomeController::class, 'clientPaymentsList'])->name('home.clientPayments');
-        Route::get('/clientMonthlyInvoice/{user_id}/{invoiceId}', [HomeController::class, 'clientMonthlyInvoice'])->name('home.clientMonthlyInvoice');
+        Route::get('/clientMonthlyInvoice/{user_id}/{invoiceId}/{month}/{year}', [HomeController::class, 'clientMonthlyInvoice'])->name('home.clientMonthlyInvoice');
         Route::post('/addClientLineItem',[HomeController::class, 'addClientLineItem'])->name('client.addClientLineItem');
-        Route::get('/clientFees/{user_id}/{invoiceId}', [HomeController::class, 'clientFees'])->name('home.clientFees');
+        Route::get('/clientFees/{user_id}/{invoiceId}/{month}/{year}', [HomeController::class, 'clientFees'])->name('home.clientFees');
         Route::post('/clientFeesPost', [HomeController::class, 'clientFeesPost'])->name('home.clientFeesPost');
 
         /**
@@ -69,7 +69,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          /**
          * view monthly wareHouseAccess request line items 
          */
-        Route::get('/viewRequestedItems/{user_id}/{invoiceId}', [HomeController::class, 'viewRequestedItems'])->name('warehouse.requestedList');
+        Route::get('/viewRequestedItems/{user_id}/{invoiceId}/{month}/{year}', [HomeController::class, 'viewRequestedItems'])->name('warehouse.requestedList');
 
         /**
          * Logout Routes

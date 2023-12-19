@@ -16,8 +16,8 @@
                     </div>
                     <div class="table-button-div m-20">
                         <div class="table-button-div-left">
-                        <a href="{{ route('home.clientMonthlyInvoice',[$user_id,$invoiceId])}}" class="btn cus-btn-white">Invoice</a>
-                        <a href="{{ route('home.clientFees',[$user_id,$invoiceId]) }}" class="btn cus-btn-white cus-btn-active">Fulfillment Fees</a>
+                        <a href="{{ route('home.clientMonthlyInvoice',[$user_id,$invoiceId,$month,$year])}}" class="btn cus-btn-white">Invoice</a>
+                        <a href="{{ route('home.clientFees',[$user_id,$invoiceId,$month,$year]) }}" class="btn cus-btn-white cus-btn-active">Fulfillment Fees</a>
                         </div>
                     </div>
                 </div>
@@ -38,6 +38,8 @@
                 <input type="hidden" name="dataAvailable" value="{{$dataAvailable}}">
                 <input type="hidden" name="user_id" value="{{$user_id}}">
                 <input type="hidden" name="invoiceId" value="{{$invoiceId}}">
+                <input type="hidden" name="month" value="{{$month}}">
+                <input type="hidden" name="year" value="{{$year}}">                
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <!-- GRID -->
@@ -482,7 +484,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="table-button-div-ceter">    
-                            <a href="{{ route('home.clientFees',[$user_id,$invoiceId]) }}" class="btn cus-btn-white">Cancel</a>                        
+                            <a href="{{ route('home.clientFees',[$user_id,$invoiceId,$month,$year]) }}" class="btn cus-btn-white">Cancel</a>                        
                             <button  class="btn cus-btn-or" type="submit">Save Changes</button>
                         </div>
                     </div>

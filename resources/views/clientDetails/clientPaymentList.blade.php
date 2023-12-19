@@ -29,7 +29,7 @@
                 <tbody>
                     <tr>
                         <td><span class="color-red">UnPaid</span></td>
-                        <td><a href="{{ route('home.clientMonthlyInvoice',[$user_id,182808]) }}">182808</a></td>
+                        <td><a href="{{ route('home.clientMonthlyInvoice',[$user_id,182808,12,2023]) }}">182808</a></td>
                         <td>December</td>
                         <td>12/14/2023</td>
                         <td>12/21/2023</td>
@@ -44,8 +44,8 @@
                     </tr>                
                     <tr>
                         <td><span class="color-green">Paid</span></td>
-                        <td><a href="{{ route('home.clientMonthlyInvoice',[$user_id,170091]) }}">170091</a></td>
-                        <td>December</td>
+                        <td><a href="{{ route('home.clientMonthlyInvoice',[$user_id,170091,11,2023]) }}">170091</a></td>
+                        <td>November</td>
                         <td>12/14/2023</td>
                         <td>12/21/2023</td>
                         <td><b>USD 1,421.31</b></td>

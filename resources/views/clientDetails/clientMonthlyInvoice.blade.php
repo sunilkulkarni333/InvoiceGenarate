@@ -21,9 +21,9 @@
               </div>
               <div class="table-button-div">
                 <div class="table-button-div-left">
-                   <a href="{{ route('home.clientMonthlyInvoice',[$user_id,$invoiceId])}}" class="btn cus-btn-white cus-btn-active">Invoice</a>
-                   <a href="{{ route('home.clientFees',[$user_id,$invoiceId]) }}" class="btn cus-btn-white">Fulfillment Fees</a>
-                   <a href="{{ route('warehouse.requestedList',[$user_id,$invoiceId]) }}" class="btn cus-btn-white">Approvals</a>
+                   <a href="{{ route('home.clientMonthlyInvoice',[$user_id,$invoiceId,$month,$year])}}" class="btn cus-btn-white cus-btn-active">Invoice</a>
+                   <a href="{{ route('home.clientFees',[$user_id,$invoiceId,$month,$year]) }}" class="btn cus-btn-white">Fulfillment Fees</a>
+                   <a href="{{ route('warehouse.requestedList',[$user_id,$invoiceId,$month,$year]) }}" class="btn cus-btn-white">Approvals</a>
                 </div>
                 <div class="table-button-div-right">
                   <a href="#!" class="btn cus-btn-or"  data-toggle="modal" data-target="#exampleModal">Add Line item</a>
@@ -50,6 +50,8 @@
                 @csrf
                 <input type="hidden" name="client_id" id="client_id" value="{{$user_id}}">
                 <input type="hidden" name="invoiceId" id="invoiceId" value="{{$invoiceId}}">
+                <input type="hidden" name="year" id="year" value="{{$year}}">
+                <input type="hidden" name="month" id="month" value="{{$month}}">
                 <div class="form-group">
                   <label for="activity">Activity</label>
                   <input type="text" name="activity" class="form-control" id="activity" aria-describedby="" placeholder="Activity" value="{{ old('activity') }}">
@@ -80,7 +82,7 @@
                   </div>
                 </div> --}}
                 <div class="popup-btn">
-                  <a href="{{ route('home.clientMonthlyInvoice',[$user_id,$invoiceId])}}" type="button" class="btn" onlick="closeEventPopup()">Cancel</a>
+                  <a href="{{ route('home.clientMonthlyInvoice',[$user_id,$invoiceId,$month,$year])}}" type="button" class="btn" onlick="closeEventPopup()">Cancel</a>
                   <button type="submit" class="btn">Submit</button>
                 </div>
               </form>

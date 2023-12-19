@@ -71,12 +71,12 @@ class HomeController extends Controller
         return view('clientDetails.clientPaymentList',compact('user_id','userData'));
     }
 
-    public function clientMonthlyInvoice($user_id,$invoiceId){
+    public function clientMonthlyInvoice($user_id,$invoiceId,$month,$year){
         $userData = user::find($user_id);
-        return view('clientDetails.clientMonthlyInvoice',compact('user_id','invoiceId','userData'));
+        return view('clientDetails.clientMonthlyInvoice',compact('user_id','invoiceId','month','year','userData'));
     }
 
-    public function clientFees($user_id,$invoiceId){
+    public function clientFees($user_id,$invoiceId,$month,$year){
         $userData = user::find($user_id);
         $clientData = client_fees::where('client_id',$user_id)->get();          
         if(count($clientData) > 0){
@@ -87,7 +87,7 @@ class HomeController extends Controller
             $generalfees = general_fees::all();
             $fees = json_decode($generalfees[0]->fullfillment_fees);     
         }        
-        return view('clientDetails.clientFees',compact('user_id','invoiceId','userData','fees','dataAvailable'));
+        return view('clientDetails.clientFees',compact('user_id','invoiceId','month','year','userData','fees','dataAvailable'));
     }
 
     public function clientFeesPost(Request $request){        
@@ -172,7 +172,7 @@ class HomeController extends Controller
             DB::table("client_fees")->insert(['fullfillment_fees' => $data,'client_id' => $request->user_id,'created_at'=>date('Y-m-d H:i:s')]);
         }
 
-        return redirect()->route('home.clientFees',[$request->user_id,$request->invoiceId])->withsuccess('Updated Successfully');
+        return redirect()->route('home.clientFees',[$request->user_id,$request->invoiceId,$request->month,$request->year])->withsuccess('Updated Successfully');
      }
 
     public function generalFees(){
@@ -276,7 +276,7 @@ class HomeController extends Controller
                 'client_id' => $request->client_id,'month' => date('M'),'year' =>date('Y'),'status' => 1];
 
         client_monthly_invoices::create($data);
-        return redirect()->route('home.clientMonthlyInvoice',[$request->client_id,$request->invoiceId])->withsuccess('Updated Successfully');
+        return redirect()->route('home.clientMonthlyInvoice',[$request->client_id,$request->invoiceId,$request->month,$request->year])->withsuccess('Updated Successfully');
     }
 
     public function wareHouseAccess(){
@@ -328,8 +328,9 @@ class HomeController extends Controller
     }
 
 
-    public function viewRequestedItems($user_id,$invoiceId){
+    public function viewRequestedItems($user_id,$invoiceId,$month,$year){
         $userData = user::find($user_id);
-        return view('clientDetails.requestedWarehouseList',compact('user_id','invoiceId','userData'));
+        $wareHouseRequest = client_monthly_invoices::where('client_id',$user_id)->where('status',0)->paginate(20);        
+        return view('clientDetails.requestedWarehouseList',compact('user_id','invoiceId','month','year','userData','wareHouseRequest'));
     }
 }
