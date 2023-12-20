@@ -330,7 +330,7 @@ class HomeController extends Controller
 
     public function viewRequestedItems($user_id,$invoiceId,$month,$year){
         $userData = user::find($user_id);                
-        $wareHouseRequest = client_monthly_invoices::where('month',date('M', strtotime($year.$month . '01')))->where('year',$year)->where('client_id',$user_id)->paginate(2);        
+        $wareHouseRequest = client_monthly_invoices::where('month',date('M', strtotime($year.$month . '01')))->where('year',$year)->where('client_id',$user_id)->paginate(20);        
         return view('clientDetails.requestedWarehouseList',compact('user_id','invoiceId','month','year','userData','wareHouseRequest'));
     }
 
