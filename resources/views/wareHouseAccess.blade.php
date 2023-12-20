@@ -20,7 +20,13 @@
                             <label for="activity">Company</label>
                             <select name="client_id" id="client_id" class="form-control" onchange="getClientDetails();">                                                             
                                 @foreach ($clients as $item)
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                   @php
+                                       $selectedValue = '';
+                                       if(old('client_id') == $item->id){
+                                         $selectedValue = 'selected';
+                                       }
+                                   @endphp
+                                    <option value="{{$item->id}}" {{$selectedValue}}>{{$item->name}}</option>
                                 @endforeach
                             </select>
                             <span class="error">{{ $errors->first('client_id') }}</span>
