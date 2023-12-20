@@ -30,62 +30,75 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col">             
-
-              <table class="table">
-                <thead>
-                    <tr>
-                    <th>Activity</th>
-                    <th>Description</th>
-                    <th>Quantity</th>
-                    <th>Rate</th>
-                    <th>Amount</th>
-                    <th>Created Date</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if(count($wareHouseRequest) > 0)
-                        @foreach($wareHouseRequest as $requestCame)
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th>Activity</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                        <th>Created Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(count($wareHouseRequest) > 0)
+                            @foreach($wareHouseRequest as $requestCame)
+                            <tr>                        
+                                <td>{{$requestCame->activity}}</td>
+                                <td>{{$requestCame->description}}</td>
+                                <td>{{$requestCame->qty}}</td>
+                                <td>{{$requestCame->rate}}</td>
+                                <td>
+                                    @php 
+                                    $amount = $requestCame->rate * $requestCame->qty; 
+                                    echo number_format((float)$amount, 2, '.', ''); 
+                                    @endphp
+                                </td>         
+                                <td>{{date('Y-m-d',strtotime($requestCame->created_at))}}</td>     
+                                <td>
+                                    @php
+                                        if($requestCame->status == 0){
+                                            echo 'Pending';
+                                        }else if($requestCame->status == 1){
+                                            echo 'Approved';
+                                        }else{
+                                            echo 'Rejected';
+                                        }
+                                    @endphp
+                                </td>         
+                                <td>
+                                    @if($requestCame->status == 0)
+                                    <div class="table-ts-img">
+                                        <a href="{{ route('warehouse.approveReject',[$requestCame->id,1,$user_id,$invoiceId,$month,$year]) }}" data-toggle="tooltip" title="Approve Item">
+                                            <i data-feather="check-square"></i>
+                                        </a>
+                                        <a href="{{ route('warehouse.approveReject',[$requestCame->id,0,$user_id,$invoiceId,$month,$year]) }}" data-toggle="tooltip" title="Reject Item" style="color:red">
+                                            <i data-feather="slash"></i>
+                                        </a>                                                             
+                                    </div>
+                                    @else
+                                            -------
+                                    @endif
+                                </td>
+                            </tr> 
+                            @endforeach         
+                        @else
                         <tr>                        
-                            <td>{{$requestCame->activity}}</td>
-                            <td>{{$requestCame->description}}</td>
-                            <td>{{$requestCame->qty}}</td>
-                            <td>{{$requestCame->rate}}</td>
-                            <td>{{$requestCame->rate * $requestCame->qty}}</td>         
-                            <td>{{$requestCame->created_at}}</td>     
-                            <td>
-                                @php
-                                    if($requestCame->status == 0){
-                                        echo 'Pending';
-                                    }else if($requestCame->status == 1){
-                                        echo 'Approved';
-                                    }else{
-                                        echo 'Rejected';
-                                    }
-                                @endphp
-                            </td>         
-                            <td>
-                                <div class="table-ts-img">
-                                    <a href=""><img src="{{ asset('images/email.png') }}" class="img-fluid"/></a>
-                                    <a href=""><img src="{{ asset('images/download.png') }}" class="img-fluid"/></a>                                
-                                </div>
-                            </td>
-                        </tr> 
-                        @endforeach         
-                    @else
-                    <tr>                        
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>No Approvals Available</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    @endif
-                </tbody>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>No Approvals Available</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        @endif
+                    </tbody>
                 </table>
+                {{ $wareHouseRequest->links() }}
             </div>
           </div>
         </div>

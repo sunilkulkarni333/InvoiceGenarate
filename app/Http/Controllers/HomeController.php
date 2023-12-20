@@ -329,8 +329,18 @@ class HomeController extends Controller
 
 
     public function viewRequestedItems($user_id,$invoiceId,$month,$year){
-        $userData = user::find($user_id);
-        $wareHouseRequest = client_monthly_invoices::where('month','Dec')->where('year','2023')->where('client_id',$user_id)->where('status',0)->paginate(20);        
+        $userData = user::find($user_id);                
+        $wareHouseRequest = client_monthly_invoices::where('month',date('M', strtotime($year.$month . '01')))->where('year',$year)->where('client_id',$user_id)->paginate(2);        
         return view('clientDetails.requestedWarehouseList',compact('user_id','invoiceId','month','year','userData','wareHouseRequest'));
+    }
+
+    public function approveRejectItems($id,$status,$user_id,$invoiceId,$month,$year){
+        if($status == 0){
+            client_monthly_invoices::where('id',$id)->update(['status'=>2]);
+            return redirect()->route('warehouse.requestedList',[$user_id,$invoiceId,$month,$year])->withErrors('Rejected request');
+        }else{
+            client_monthly_invoices::where('id',$id)->update(['status'=>1]);
+            return redirect()->route('warehouse.requestedList',[$user_id,$invoiceId,$month,$year])->withsuccess('Added to invoice');
+        }        
     }
 }

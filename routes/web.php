@@ -70,6 +70,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          * view monthly wareHouseAccess request line items 
          */
         Route::get('/viewRequestedItems/{user_id}/{invoiceId}/{month}/{year}', [HomeController::class, 'viewRequestedItems'])->name('warehouse.requestedList');
+        Route::get('/approveRejectItems/{id}/{status}/{user_id}/{invoiceId}/{month}/{year}', [HomeController::class, 'approveRejectItems'])->name('warehouse.approveReject');
 
         /**
          * Logout Routes
